@@ -47,10 +47,6 @@ class ScenarioForm extends Component {
         <div className="container">
           <div className="row">
             <div className="col-md-8 m-auto">
-              <h5 className="display-4 text-center">
-                Create / Edit Project form
-              </h5>
-              <hr />
               {/*-------------ON SUBMIT FORM --------------*/}
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
