@@ -1,0 +1,17 @@
+import axios from "axios";
+import { GET_ERRORS } from "./types";
+
+export const createScenario = (scenario, history) => async (dispatch) => {
+  try {
+    const res = await axios.post(
+      "http://localhost:8333/tests-ws/features/scenarios",
+      scenario
+    );
+    history.push("/dashboard");
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    });
+  }
+};

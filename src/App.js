@@ -1,25 +1,28 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React from "react";
+import logo from "./logo.svg";
+import "./App.css";
+import "bootstrap/dist/css/bootstrap.min.css";
+import Header from "./components/Layout/Header";
+import Dashboard from "./components/Dashboard";
+import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
+import ScenarioForm from "./components/Scenario/ScenarioForm";
+import { Provider } from "react-redux";
+import store from "./store";
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <Provider store={store}>
+      <div className="App">
+        <Router>
+          <Header />
+          <Route exact path="/">
+            <Redirect to="/dashboard" />
+          </Route>
+          <Route path="/dashboard" component={Dashboard} />
+          <Route path="/createScenario" component={ScenarioForm} />
+        </Router>
+      </div>
+    </Provider>
   );
 }
 
