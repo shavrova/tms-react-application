@@ -46,3 +46,12 @@ h6 {
   float: left;
   max-width: 500px;
 }
+
+.single-scenatio-view {
+  min-width: 400px;
+  text-align: left;
+}
+
+.single-scenatio-view h1 {
+  text-align: center;
+}
