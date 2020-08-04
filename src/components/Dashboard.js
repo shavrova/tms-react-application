@@ -1,9 +1,8 @@
 import React, { Component } from "react";
-import ScenariosTreeView from "./Layout/ScenariosTreeView";
+import ScenariosTreeView from "./Scenario/ScenariosTreeView";
 import { connect } from "react-redux";
 import { getScenarios } from "../actions/ScenarioActions";
 import PropTypes from "prop-types";
-import ScenarioView from "./Scenario/ScenarioView";
 
 class Dashboard extends Component {
   componentDidMount() {

@@ -4,10 +4,7 @@ import TreeView from "@material-ui/lab/TreeView";
 import ExpandMoreIcon from "@material-ui/icons/ExpandMore";
 import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import TreeItem from "@material-ui/lab/TreeItem";
-import { Link } from "react-router-dom";
-import Demo from "../Demo";
-import ScenarioView from "../Scenario/ScenarioView";
-import FeatureView from "../feature/FeatureView";
+import ScenarioView from "./ScenarioView";
 import ReactDOM from "react-dom";
 
 class ScenariosTreeView extends Component {

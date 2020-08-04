@@ -1,5 +1,4 @@
 import React from "react";
-import logo from "./logo.svg";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Header from "./components/Layout/Header";
@@ -8,8 +7,7 @@ import { BrowserRouter as Router, Route, Redirect } from "react-router-dom";
 import ScenarioForm from "./components/Scenario/CreateScenarioForm";
 import { Provider } from "react-redux";
 import store from "./store";
-import ScenarioTable from "./components/Layout/ScenarioTable";
-import ScenarioView from "./components/Scenario/ScenarioView";
+import ScenarioTable from "./components/Scenario/ScenarioTable";
 
 function App() {
   return (
