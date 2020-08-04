@@ -45,6 +45,16 @@ h6 {
   text-align: left;
   float: left;
   max-width: 500px;
+
+  overflow-y: scroll;
+  min-height: 600px;
+  max-height: 600px;
+  min-width: 300px;
+  border-style: solid;
+  border-radius: 10px;
+  border-color: slategrey;
+  border-width: 1px;
+  padding-top: 20px;
 }
 
 .single-scenatio-view {
@@ -54,4 +64,9 @@ h6 {
 
 .single-scenatio-view h1 {
   text-align: center;
+}
+
+#editScenarioLink {
+  float: right;
+  color: white;
 }

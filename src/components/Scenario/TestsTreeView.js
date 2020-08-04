@@ -7,15 +7,17 @@ import TreeItem from "@material-ui/lab/TreeItem";
 import ScenarioView from "./ScenarioView";
 import ReactDOM from "react-dom";
 
-class ScenariosTreeView extends Component {
+class TestsTreeView extends Component {
   handleClick(s, e) {
     ReactDOM.render(
       <ScenarioView scenario={s} />,
       document.querySelector("#scenario-container")
     );
   }
+
   render() {
-    const { scenarios } = this.props;
+    //const { scenarios } = this.props;
+    const { features } = this.props;
     return (
       <div className="container">
         <div class="row">
@@ -24,14 +26,19 @@ class ScenariosTreeView extends Component {
               className="scenarioTree"
               defaultCollapseIcon={<ExpandMoreIcon />}
               defaultExpandIcon={<ChevronRightIcon />}
+              multiSelect
             >
-              <TreeItem nodeId="1" label="All Scenarios">
-                {scenarios.map((scenario) => (
-                  <TreeItem
-                    nodeId="2"
-                    label={scenario.scenarioName}
-                    onClick={() => this.handleClick(scenario)}
-                  ></TreeItem>
+              <TreeItem nodeId="1" label="All Features">
+                {features.map((feature) => (
+                  <TreeItem nodeId="2" label={feature.featureName}>
+                    {feature.scenarios.map((scenario) => (
+                      <TreeItem
+                        nodeId="3"
+                        label={scenario.scenarioName}
+                        onClick={() => this.handleClick(scenario)}
+                      ></TreeItem>
+                    ))}
+                  </TreeItem>
                 ))}
               </TreeItem>
             </TreeView>
@@ -45,4 +52,4 @@ class ScenariosTreeView extends Component {
   }
 }
 
-export default ScenariosTreeView;
+export default TestsTreeView;

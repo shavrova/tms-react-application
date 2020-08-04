@@ -8,19 +8,23 @@ import ScenarioForm from "./components/Scenario/CreateScenarioForm";
 import { Provider } from "react-redux";
 import store from "./store";
 import ScenarioTable from "./components/Scenario/ScenarioTable";
+import EditScenarioForm from "./components/Scenario/EditScenarioForm";
 
 function App() {
   return (
     <Provider store={store}>
       <div className="App">
         <Router>
-          <Header />
-          <Route exact path="/">
-            <Redirect to="/dashboard" />
-          </Route>
-          <Route path="/dashboard" component={Dashboard} />
-          <Route path="/createScenario" component={ScenarioForm} />
-          <Route path="/allScenarios" component={ScenarioTable} />
+          <div>
+            <Header />
+            <Route exact path="/">
+              <Redirect to="/dashboard" />
+            </Route>
+            <Route path="/dashboard" component={Dashboard} />
+            <Route path="/createScenario" component={ScenarioForm} />
+            <Route path="/allScenarios" component={ScenarioTable} />
+            <Route path="/editScenario/:id" component={EditScenarioForm} />
+          </div>
         </Router>
       </div>
     </Provider>
