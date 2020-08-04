@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_ERRORS } from "./types";
+import { GET_ERRORS, GET_SCENARIOS, GET_SCENARIO } from "./types";
 
 export const createScenario = (scenario, history) => async (dispatch) => {
   try {
@@ -14,4 +14,24 @@ export const createScenario = (scenario, history) => async (dispatch) => {
       payload: err.response.data,
     });
   }
+};
+
+export const getScenarios = () => async (dispatch) => {
+  const res = await axios.get(
+    "http://localhost:8333/tests-ws/features/scenarios"
+  );
+  dispatch({
+    type: GET_SCENARIOS,
+    payload: res.data.content,
+  });
+};
+
+export const getScenario = (id, history) => async (dispatch) => {
+  const res = await axios.get(
+    `http://localhost:8333/tests-ws/features/scenarios/${id}`
+  );
+  dispatch({
+    type: GET_SCENARIO,
+    payload: res.data,
+  });
 };

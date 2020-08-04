@@ -40,3 +40,9 @@
 h6 {
   text-align: left;
 }
+
+.scenarioTree {
+  text-align: left;
+  float: left;
+  max-width: 500px;
+}

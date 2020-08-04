@@ -17,6 +17,11 @@ class Header extends Component {
                   Create scenario
                 </a>
               </li>
+              <li className="nav-item b">
+                <a className="nav-link" href="/allScenarios">
+                  All scenarios
+                </a>
+              </li>
             </ul>
             <ul className="navbar-nav ml-auto">
               <li className="nav-item">

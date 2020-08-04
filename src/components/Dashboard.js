@@ -1,24 +1,33 @@
 import React, { Component } from "react";
-import FileSystemNavigator from "./Layout/FileSystemNavigator";
-import ScenarioTable from "./Layout/ScenarioTable";
+import ScenariosTreeView from "./Layout/ScenariosTreeView";
+import { connect } from "react-redux";
+import { getScenarios } from "../actions/ScenarioActions";
+import PropTypes from "prop-types";
+import ScenarioView from "./Scenario/ScenarioView";
 
 class Dashboard extends Component {
+  componentDidMount() {
+    this.props.getScenarios();
+  }
+
   render() {
+    const { scenarios } = this.props.scenario;
+
     return (
       <div className="container ml-5 mr-5">
-        <div className="row">
-          <div className="col">
-            <div className="row mr-auto">
-              <FileSystemNavigator />
-            </div>
-          </div>
-          <div className="row ml-auto">
-            <ScenarioTable />
-          </div>
-        </div>
+        <ScenariosTreeView scenarios={scenarios} />
       </div>
     );
   }
 }
 
-export default Dashboard;
+Dashboard.propTypes = {
+  scenario: PropTypes.object.isRequired,
+  getScenarios: PropTypes.func.isRequired,
+};
+
+const mapStateToProps = (state) => ({
+  scenario: state.scenario,
+});
+
+export default connect(mapStateToProps, { getScenarios })(Dashboard);
