@@ -37,14 +37,20 @@ class ScenarioView extends Component {
           </div>
         </div>
 
-        <hr />
-
         {/*------------------------- Scenatio Description field -------------------------*/}
-
         <div className="card">
           <h5 className="card-header">Description</h5>
           <div className="card-body">
             <p className="card-text">{scenario.scenarioDescription}</p>
+          </div>
+        </div>
+        <br />
+        {/*------------------------- Scenatio Feature field -------------------------*/}
+
+        <div className="card">
+          <h5 className="card-header">Feature</h5>
+          <div className="card-body">
+            <p className="card-text">{scenario.featureId}</p>
           </div>
         </div>
 

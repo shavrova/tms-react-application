@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createScenario } from "../../actions/ScenarioActions";
+import { getFeatures } from "../../actions/FeatureActions";
 import classnames from "classnames";
 
 class ScenarioForm extends Component {
@@ -25,6 +26,10 @@ class ScenarioForm extends Component {
     }
   }
 
+  componentDidMount() {
+    this.props.getFeatures();
+  }
+
   onChange(e) {
     this.setState({ [e.target.name]: e.target.value });
   }
@@ -40,8 +45,14 @@ class ScenarioForm extends Component {
     this.props.createScenario(newScenario, this.props.history);
   }
 
+  onSelect(e) {
+    e.preventDefault();
+    console.log("get selected feature id");
+  }
+
   render() {
     const { errors } = this.state;
+    const { features } = this.props.feature;
     return (
       <div className="register">
         <div className="container">
@@ -51,6 +62,7 @@ class ScenarioForm extends Component {
               <form onSubmit={this.onSubmit}>
                 <div className="form-group">
                   {/*-------------SCENARIO NAME FIELD : scenarioName --------------*/}
+                  <h1>Create new scenario</h1>
                   <input
                     type="text"
                     className={classnames("form-control form-control-lg", {
@@ -110,7 +122,7 @@ class ScenarioForm extends Component {
                   )}
                 </div>
                 {/*-------------FEATUTE ID FIELD : featureId --------------*/}
-                <div className="form-group">
+                {/*   <div className="form-group">
                   <input
                     className={classnames("form-control form-control-lg", {
                       "is-invalid":
@@ -138,26 +150,22 @@ class ScenarioForm extends Component {
                     ""
                   )}
                 </div>
-
-                {/*
+                  */}
                 <h6>Select feature:</h6>
                 <div className="form-group">
-                  <select name="featureId" className="form-control form-control-lg">
-                    <option value="Populate with feature name">
-                      Populate with feature name
-                    </option>
-                    <option value="Populate with feature name">
-                      Populate with feature name
-                    </option>
-                    <option value="Populate with feature name">
-                      Populate with feature name
-                    </option>
-                    <option value="Populate with feature name">
-                      Populate with feature name
-                    </option>
+                  <select
+                    name="featureId"
+                    className="form-control form-control-lg"
+                    onChange={this.onChange}
+                  >
+                    {features.map((feature) => (
+                      <option value={feature.featureId}>
+                        {feature.featureName}
+                      </option>
+                    ))}
                   </select>
                 </div>
-            */}
+
                 {/*-------------SUBMIT BUTTON --------------*/}
                 <input
                   type="submit"
@@ -176,10 +184,15 @@ class ScenarioForm extends Component {
 ScenarioForm.propTypes = {
   createScenario: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
+  getFeatures: PropTypes.func.isRequired,
+  feature: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
+  feature: state.feature,
 });
 
-export default connect(mapStateToProps, { createScenario })(ScenarioForm);
+export default connect(mapStateToProps, { createScenario, getFeatures })(
+  ScenarioForm
+);
