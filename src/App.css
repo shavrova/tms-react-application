@@ -55,8 +55,13 @@ h6 {
   border-color: slategrey;
   border-width: 1px;
   padding-top: 20px;
+  font-weight: bold;
+  font-family: "Gill Sans", sans-serif;
 }
 
+.scenarioTree treeItem {
+  font-family: "Gill Sans", sans-serif;
+}
 .single-scenatio-view {
   min-width: 400px;
   text-align: left;
@@ -69,4 +74,22 @@ h6 {
 #editScenarioLink {
   float: right;
   color: white;
+}
+
+.card-body {
+  text-align: left;
+  border: solid;
+  border-top: none;
+  border-left: none;
+  border-right: none;
+  border-width: 1px;
+  border-color: #eeeeee;
+}
+
+#card-header-button:focus {
+  outline: none;
+  box-shadow: none;
+}
+
+.all-features-view {
 }

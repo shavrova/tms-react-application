@@ -3,13 +3,16 @@ import { connect } from "react-redux";
 import { getScenarios } from "../actions/ScenarioActions";
 import { getFeatures } from "../actions/FeatureActions";
 import PropTypes from "prop-types";
-import TestsTreeView from "./Scenario/TestsTreeView";
+import TestsView from "./Scenario/TestsView";
 import EditScenarioButton from "./Scenario/EditScenarioButton";
+import Demo from "./Demo";
+import AllFeaturesView from "./Scenario/AllFeaturesView";
 
 class Dashboard extends Component {
   componentDidMount() {
     //this.props.getScenarios();
     this.props.getFeatures();
+    //<TestsTreeView features={features} />
   }
 
   render() {
@@ -18,7 +21,7 @@ class Dashboard extends Component {
 
     return (
       <div className="container ml-5 mr-5">
-        <TestsTreeView features={features} />
+        <AllFeaturesView features={features} />
       </div>
     );
   }

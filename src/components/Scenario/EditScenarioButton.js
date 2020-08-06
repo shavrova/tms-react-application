@@ -6,7 +6,7 @@ const CreateScenarioButton = ({ scenarioId }) => {
     <React.Fragment>
       <Link
         id="editScenarioLink"
-        to={`/editScenario/${scenarioId}}`}
+        to={`/editScenario/${scenarioId}`}
         class="btn btn-primary"
       >
         Edit

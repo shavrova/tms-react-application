@@ -6,9 +6,11 @@ import ChevronRightIcon from "@material-ui/icons/ChevronRight";
 import TreeItem from "@material-ui/lab/TreeItem";
 import ScenarioView from "./ScenarioView";
 import ReactDOM from "react-dom";
+import { Link } from "react-router-dom";
 
 class TestsTreeView extends Component {
   handleClick(s, e) {
+    //onClick={() => this.handleClick(scenario)}
     ReactDOM.render(
       <ScenarioView scenario={s} />,
       document.querySelector("#scenario-container")
@@ -26,7 +28,6 @@ class TestsTreeView extends Component {
               className="scenarioTree"
               defaultCollapseIcon={<ExpandMoreIcon />}
               defaultExpandIcon={<ChevronRightIcon />}
-              multiSelect
             >
               <TreeItem nodeId="1" label="All Features">
                 {features.map((feature) => (
@@ -35,7 +36,6 @@ class TestsTreeView extends Component {
                       <TreeItem
                         nodeId="3"
                         label={scenario.scenarioName}
-                        onClick={() => this.handleClick(scenario)}
                       ></TreeItem>
                     ))}
                   </TreeItem>
@@ -43,6 +43,7 @@ class TestsTreeView extends Component {
               </TreeItem>
             </TreeView>
           </div>
+          <Link to="/test">Edit</Link>
           <div className="col ml-auto">
             <div id="scenario-container"></div>
           </div>
