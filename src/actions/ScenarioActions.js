@@ -35,3 +35,18 @@ export const getScenario = (id, history) => async (dispatch) => {
     payload: res.data,
   });
 };
+
+export const updateScenario = (scenario, history) => async (dispatch) => {
+  try {
+    const res = await axios.put(
+      "http://localhost:8333/tests-ws/features/scenarios",
+      scenario
+    );
+    history.push("/dashboard");
+  } catch (err) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: err.response.data,
+    });
+  }
+};
