@@ -15,12 +15,17 @@ class EditScenarioForm extends Component {
       scenarioName: "",
       scenarioDescription: "",
       featureId: "",
+      errors: {},
     };
     this.onChange = this.onChange.bind(this);
     this.onSubmit = this.onSubmit.bind(this);
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.errors) {
+      this.setState({ errors: nextProps.errors });
+    }
+
     const {
       scenarioId,
       scenarioName,
@@ -67,6 +72,7 @@ class EditScenarioForm extends Component {
 
   render() {
     const { features } = this.props.feature;
+    const { errors } = this.state;
     return (
       <div className="project">
         <div className="container">
@@ -78,22 +84,49 @@ class EditScenarioForm extends Component {
                 <div className="form-group">
                   <input
                     type="text"
-                    className="form-control form-control-lg "
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid":
+                        errors.scenarioName ||
+                        (errors.message &&
+                          errors.message.includes("Scenario name")),
+                    })}
                     placeholder="Scenario Name"
                     name="scenarioName"
                     value={this.state.scenarioName}
                     onChange={this.onChange}
                   />
+                  {errors.scenarioName && (
+                    <div className="invalid-feedback text-md-left">
+                      {errors.scenarioName}
+                    </div>
+                  )}
+                  {errors.message &&
+                  errors.message.includes("Scenario name") ? (
+                    <React.Fragment>
+                      <div className="invalid-feedback text-md-left">
+                        {errors.message}
+                      </div>
+                    </React.Fragment>
+                  ) : (
+                    ""
+                  )}
                 </div>
                 <div className="form-group">
                   <textarea
                     type="text"
-                    className="form-control form-control-lg"
+                    className={classnames("form-control form-control-lg", {
+                      "is-invalid": errors.scenarioDescription,
+                    })}
                     placeholder="Scenario Description"
                     name="scenarioDescription"
                     value={this.state.scenarioDescription}
                     onChange={this.onChange}
                   />
+                  {errors.scenarioDescription && (
+                    <div className="invalid-feedback text-md-left">
+                      {errors.scenarioDescription}
+                    </div>
+                  )}
                 </div>
                 {/*
                 <div className="form-group">
@@ -140,11 +173,13 @@ EditScenarioForm.propTypes = {
   scenario: PropTypes.object.isRequired,
   getFeatures: PropTypes.func.isRequired,
   feature: PropTypes.object.isRequired,
+  errors: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   scenario: state.scenario.scenario,
   feature: state.feature,
+  errors: state.errors,
 });
 
 export default connect(mapStateToProps, {
