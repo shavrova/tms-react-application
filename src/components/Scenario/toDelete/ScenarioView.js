@@ -1,8 +1,8 @@
 import React, { Component } from "react";
 import PropTypes from "prop-types";
 import { connect } from "react-redux";
-import { getScenario } from "../../actions/ScenarioActions";
-import EditScenarioButton from "./EditScenarioButton";
+import { getScenario } from "../../../actions/ScenarioActions";
+import EditScenarioButton from "../buttons/EditScenarioButton";
 import { Link } from "react-router-dom";
 
 class ScenarioView extends Component {

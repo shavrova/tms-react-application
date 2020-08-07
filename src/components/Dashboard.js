@@ -3,9 +3,6 @@ import { connect } from "react-redux";
 import { getScenarios } from "../actions/ScenarioActions";
 import { getFeatures } from "../actions/FeatureActions";
 import PropTypes from "prop-types";
-import TestsView from "./Scenario/TestsView";
-import EditScenarioButton from "./Scenario/EditScenarioButton";
-import Demo from "./Demo";
 import AllFeaturesView from "./Scenario/AllFeaturesView";
 
 class Dashboard extends Component {

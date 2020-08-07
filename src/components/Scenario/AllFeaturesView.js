@@ -11,7 +11,13 @@ import {
   Fade,
   Row,
 } from "reactstrap";
-import EditScenarioButton from "./EditScenarioButton";
+import EditScenarioButton from "./buttons/EditScenarioButton";
+import DeleteScenatioButton from "./buttons/DeleteScenatioButton";
+
+import { Link } from "react-router-dom";
+import { deleteScenario } from "../../actions/ScenarioActions";
+import PropTypes from "prop-types";
+import { connect } from "react-redux";
 
 class AllFeaturesView extends Component {
   constructor(props) {
@@ -93,7 +99,6 @@ class AllFeaturesView extends Component {
                   className="btn btn-link"
                   type="button"
                   id="card-header-button"
-                  // onClick={this.toggleMenu}
                   onClick={() => this.toggle(feature.featureId)}
                 >
                   {feature.featureName} (Scenarios: {feature.scenarios.length})
@@ -109,8 +114,21 @@ class AllFeaturesView extends Component {
                 onExited={this.onExited}
               >
                 <div className="card-body">
-                  <span>{scenario.scenarioName}</span>
-                  <EditScenarioButton scenarioId={scenario.scenarioId} />
+                  <div className="row">
+                    <div className="col">
+                      <span>{scenario.scenarioName}</span>
+                    </div>
+                    <div className="actions-container">
+                      <div className="col">
+                        <EditScenarioButton scenarioId={scenario.scenarioId} />
+                      </div>
+                      <div className="col">
+                        <DeleteScenatioButton
+                          scenarioId={scenario.scenarioId}
+                        />
+                      </div>
+                    </div>
+                  </div>
                 </div>
               </Collapse>
             ))}

@@ -1,4 +1,4 @@
-import { GET_SCENARIOS, GET_SCENARIO } from "../actions/types";
+import { GET_SCENARIOS, GET_SCENARIO, DELETE_SCENARIO } from "../actions/types";
 
 const initialState = {
   scenarios: [],
@@ -17,6 +17,14 @@ export default function (state = initialState, action) {
         ...state,
         scenario: action.payload,
       };
+    // case DELETE_SCENARIO:
+    //   return {
+    //     ...state,
+
+    //     scenarios: state.scenarios.filter(
+    //       (scenario) => scenario.scenarioId !== action.payload
+    //     ),
+    //   };
     default:
       return state;
   }

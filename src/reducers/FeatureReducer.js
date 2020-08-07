@@ -1,8 +1,9 @@
-import { GET_FEATURES, GET_FEATURE } from "../actions/types";
+import { GET_FEATURES, GET_FEATURE, DELETE_SCENARIO } from "../actions/types";
 
 const initialState = {
   features: [],
   feature: {},
+  scenarios: [],
 };
 
 export default function (state = initialState, action) {
@@ -17,6 +18,15 @@ export default function (state = initialState, action) {
         ...state,
         feature: action.payload,
       };
+    // case DELETE_SCENARIO:
+    //   return {
+    //     ...state,
+    //     features: state.features.forEach((feature) =>
+    //       feature.scenarios.filter(
+    //         (scenario) => scenario.scenarioId !== action.payload
+    //       )
+    //     ),
+    //   };
     default:
       return state;
   }

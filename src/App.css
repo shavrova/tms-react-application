@@ -71,9 +71,11 @@ h6 {
   text-align: center;
 }
 
-#editScenarioLink {
-  float: right;
+#scenario-action {
   color: white;
+}
+.actions-container {
+  float: right;
 }
 
 .card-body {
