@@ -10,6 +10,7 @@ import store from "./store";
 import ScenarioTable from "./components/Scenario/ScenarioTable";
 import EditScenarioForm from "./components/Scenario/EditScenarioForm";
 import Demo from "./components/Demo";
+import StepsView from "./components/steps/StepsView";
 function App() {
   return (
     <Provider store={store}>
@@ -23,6 +24,7 @@ function App() {
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/createScenario" component={ScenarioForm} />
             <Route path="/allScenarios" component={ScenarioTable} />
+            <Route path="/steps" component={StepsView} />
             <Route path="/editScenario/:id" component={EditScenarioForm} />
           </div>
         </Router>

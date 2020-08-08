@@ -18,6 +18,11 @@ class Header extends Component {
                 </a>
               </li>
               <li className="nav-item b">
+                <a className="nav-link" href="/steps">
+                  Steps
+                </a>
+              </li>
+              <li className="nav-item b">
                 <a className="nav-link" href="/allScenarios">
                   All scenarios
                 </a>
