@@ -45,11 +45,6 @@ class ScenarioForm extends Component {
     this.props.createScenario(newScenario, this.props.history);
   }
 
-  onSelect(e) {
-    e.preventDefault();
-    console.log("get selected feature id");
-  }
-
   render() {
     const { errors } = this.state;
     const { features } = this.props.feature;

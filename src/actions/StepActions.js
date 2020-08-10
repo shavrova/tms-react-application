@@ -1,5 +1,5 @@
 import axios from "axios";
-import { GET_STEP, GET_STEPS, GET_ERRORS } from "./types";
+import { GET_STEP, GET_STEPS, GET_ERRORS, CREATE_STEP } from "./types";
 
 export const getSteps = () => async (dispatch) => {
   const res = await axios.get("/steps");
@@ -17,10 +17,14 @@ export const getStep = (id, history) => async (dispatch) => {
   });
 };
 
-export const createStep = (step, history) => async (dispatch) => {
+export const createStep = (step) => async (dispatch) => {
   try {
     const res = await axios.post("/steps", step);
-    history.push("/steps");
+    const all = await axios.get("/steps");
+    dispatch({
+      type: CREATE_STEP,
+      payload: all.data.content,
+    });
   } catch (err) {
     dispatch({
       type: GET_ERRORS,

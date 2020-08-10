@@ -16,7 +16,7 @@ class StepsView extends Component {
   render() {
     const { steps } = this.props.step;
     return (
-      <div className="container w-50 float-center mr-auto ml-auto">
+      <div className="container w-75 float-center mr-auto ml-auto">
         <div className="row">
           <table class="table table-striped table-bordered ">
             <thead>
@@ -42,10 +42,17 @@ class StepsView extends Component {
           >
             +
           </button>
-          <AddStepModal
+          {this.state.modalShow ? (
+            <AddStepModal
+              show={this.state.modalShow}
+              onHide={() => this.setState({ modalShow: false })}
+            ></AddStepModal>
+          ) : null}
+          {/*<AddStepModal
             show={this.state.modalShow}
             onHide={() => this.setState({ modalShow: false })}
           />
+          */}
         </div>
       </div>
     );

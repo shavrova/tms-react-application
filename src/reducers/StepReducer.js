@@ -1,4 +1,4 @@
-import { GET_STEP, GET_STEPS } from "../actions/types";
+import { GET_STEP, GET_STEPS, CREATE_STEP } from "../actions/types";
 
 const initialState = {
   steps: [],
@@ -16,6 +16,11 @@ export default function (state = initialState, action) {
       return {
         ...state,
         step: action.payload,
+      };
+    case CREATE_STEP:
+      return {
+        ...state,
+        steps: action.payload,
       };
     default:
       return state;
