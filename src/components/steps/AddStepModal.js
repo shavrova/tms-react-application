@@ -86,13 +86,9 @@ export class AddStepModal extends Component {
               <Button variant="secondary" onClick={this.props.onHide}>
                 Close
               </Button>
-              <batton
-                type="submit"
-                className="btn btn-primary btn-block mt-4"
-                onClick={this.onSubmit}
-              >
+              <Button type="submit" variant="primary" onClick={this.onSubmit}>
                 Create
-              </batton>
+              </Button>
             </Modal.Footer>
           </form>
         </Modal>

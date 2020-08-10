@@ -20,15 +20,15 @@ export const getStep = (id, history) => async (dispatch) => {
 export const createStep = (step) => async (dispatch) => {
   try {
     const res = await axios.post("/steps", step);
-    const all = await axios.get("/steps");
-    dispatch({
-      type: CREATE_STEP,
-      payload: all.data.content,
-    });
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
       payload: err.response.data,
     });
   }
+  const all = await axios.get("/steps");
+  dispatch({
+    type: CREATE_STEP,
+    payload: all.data.content,
+  });
 };
