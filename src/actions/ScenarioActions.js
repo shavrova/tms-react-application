@@ -8,7 +8,7 @@ import {
 
 export const createScenario = (scenario, history) => async (dispatch) => {
   try {
-    const res = await axios.post("/features/scenarios", scenario);
+    const res = await axios.post("/tests-ws/features/scenarios", scenario);
     history.push("/dashboard");
   } catch (err) {
     dispatch({
@@ -19,7 +19,7 @@ export const createScenario = (scenario, history) => async (dispatch) => {
 };
 
 export const getScenarios = () => async (dispatch) => {
-  const res = await axios.get("/features/scenarios");
+  const res = await axios.get("/tests-ws/features/scenarios");
   dispatch({
     type: GET_SCENARIOS,
     payload: res.data.content,
@@ -28,7 +28,7 @@ export const getScenarios = () => async (dispatch) => {
 
 export const getScenario = (id, history) => async (dispatch) => {
   try {
-    const res = await axios.get(`/features/scenarios/${id}`);
+    const res = await axios.get(`/tests-ws/features/scenarios/${id}`);
     dispatch({
       type: GET_SCENARIO,
       payload: res.data,
@@ -39,12 +39,12 @@ export const getScenario = (id, history) => async (dispatch) => {
 };
 export const updateScenario = (scenario, history) => async (dispatch) => {
   try {
-    const res = await axios.put("/features/scenarios", scenario);
+    const res = await axios.put("/tests-ws/features/scenarios", scenario);
     history.push("/dashboard");
-    dispatch({
-      type: GET_ERRORS,
-      payload: {},
-    });
+    // dispatch({
+    //   type: GET_ERRORS,
+    //   payload: {},
+    // });
   } catch (err) {
     dispatch({
       type: GET_ERRORS,
@@ -55,7 +55,7 @@ export const updateScenario = (scenario, history) => async (dispatch) => {
 
 export const deleteScenario = (id) => async (dispatch) => {
   if (window.confirm("This action will delete scenario, proceed?")) {
-    await axios.delete(`/features/scenarios/${id}`);
+    await axios.delete(`/tests-ws/features/scenarios/${id}`);
     dispatch({
       type: DELETE_SCENARIO,
       payload: id,

@@ -9,7 +9,6 @@ import { Provider } from "react-redux";
 import store from "./store";
 import ScenarioTable from "./components/Scenario/ScenarioTable";
 import EditScenarioForm from "./components/Scenario/EditScenarioForm";
-import Demo from "./components/Demo";
 import StepsView from "./components/steps/StepsView";
 function App() {
   return (

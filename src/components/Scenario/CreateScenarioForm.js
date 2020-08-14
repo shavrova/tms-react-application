@@ -3,7 +3,10 @@ import PropTypes from "prop-types";
 import { connect } from "react-redux";
 import { createScenario } from "../../actions/ScenarioActions";
 import { getFeatures } from "../../actions/FeatureActions";
+import { getSteps } from "../../actions/StepActions";
 import classnames from "classnames";
+import { Dropdown } from "semantic-ui-react";
+import _ from "lodash";
 
 class ScenarioForm extends Component {
   constructor() {
@@ -13,6 +16,7 @@ class ScenarioForm extends Component {
       scenarioName: "",
       scenarioDescription: "",
       featureId: "",
+      steps: [],
       errors: {},
     };
 
@@ -28,6 +32,7 @@ class ScenarioForm extends Component {
 
   componentDidMount() {
     this.props.getFeatures();
+    this.props.getSteps();
   }
 
   onChange(e) {
@@ -40,14 +45,33 @@ class ScenarioForm extends Component {
       scenarioName: this.state.scenarioName,
       scenarioDescription: this.state.scenarioDescription,
       featureId: this.state.featureId,
+      steps: this.state.steps,
     };
 
     this.props.createScenario(newScenario, this.props.history);
   }
 
+  handleStepsChange = (e, { value }) => {
+    if (this.state.steps.length > value.length) {
+      const difference = this.state.steps.filter((x) => !value.includes(x));
+
+      console.log(difference); // this is the item
+      return false;
+    }
+    return this.setState({ steps: value });
+  };
+
   render() {
     const { errors } = this.state;
     const { features } = this.props.feature;
+    const allSteps = this.props.step.steps;
+
+    const stepsOptions = _.map(allSteps, (step) => ({
+      key: step.stepId,
+      text: step.stepName,
+      value: step,
+    }));
+
     return (
       <div className="register">
         <div className="container">
@@ -116,36 +140,8 @@ class ScenarioForm extends Component {
                     ""
                   )}
                 </div>
-                {/*-------------FEATUTE ID FIELD : featureId --------------*/}
-                {/*   <div className="form-group">
-                  <input
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid":
-                        errors.featureId ||
-                        (errors.message &&
-                          errors.message.includes("Feature id")),
-                    })}
-                    placeholder="Feature id"
-                    name="featureId"
-                    value={this.state.featureId}
-                    onChange={this.onChange}
-                  ></input>
-                  {errors.featureId && (
-                    <div className="invalid-feedback text-md-left">
-                      {errors.featureId}
-                    </div>
-                  )}
-                  {errors.message && errors.message.includes("Feature id") ? (
-                    <React.Fragment>
-                      <div className="invalid-feedback text-md-left">
-                        {errors.message}
-                      </div>
-                    </React.Fragment>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                  */}
+                {/*-------------FEATURE DROPDOWN --------------*/}
+
                 <h6>Select feature:</h6>
                 <div className="form-group">
                   <select
@@ -159,6 +155,26 @@ class ScenarioForm extends Component {
                       </option>
                     ))}
                   </select>
+                </div>
+
+                {/*-------------STEPS --------------*/}
+                <br />
+                <div className="card">
+                  <div className="card-header">
+                    <h5>Steps</h5>
+                  </div>
+                  <div className="m-5">
+                    <Dropdown
+                      placeholder="Select step"
+                      name="steps"
+                      fluid
+                      multiple
+                      search
+                      selection
+                      options={stepsOptions}
+                      onChange={this.handleStepsChange}
+                    />
+                  </div>
                 </div>
 
                 {/*-------------SUBMIT BUTTON --------------*/}
@@ -181,13 +197,18 @@ ScenarioForm.propTypes = {
   errors: PropTypes.object.isRequired,
   getFeatures: PropTypes.func.isRequired,
   feature: PropTypes.object.isRequired,
+  getSteps: PropTypes.func.isRequired,
+  step: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
   feature: state.feature,
+  step: state.step,
 });
 
-export default connect(mapStateToProps, { createScenario, getFeatures })(
-  ScenarioForm
-);
+export default connect(mapStateToProps, {
+  createScenario,
+  getFeatures,
+  getSteps,
+})(ScenarioForm);

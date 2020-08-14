@@ -93,5 +93,9 @@ h6 {
   box-shadow: none;
 }
 
-.all-features-view {
+.list-group-item {
+  text-align: left;
+}
+li Button {
+  float: right;
 }
