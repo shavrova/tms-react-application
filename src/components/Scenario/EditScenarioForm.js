@@ -97,117 +97,112 @@ class EditScenarioForm extends Component {
 
     const { steps } = this.state;
     return (
-      <div className="project">
-        <div className="container">
-          <div className="row">
-            <div className="col-md-8 m-auto">
-              <h5 className="display-4 text-center">Update scenario</h5>
-              <hr />
-              <form onSubmit={this.onSubmit}>
-                {/*-------------Scenario Name --------------*/}
-                <div className="form-group">
-                  <input
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid":
-                        errors.scenarioName ||
-                        (errors.message &&
-                          errors.message.includes("Scenario name")),
-                    })}
-                    placeholder="Scenario Name"
-                    name="scenarioName"
-                    value={this.state.scenarioName}
-                    onChange={this.onChange}
-                  />
-                  {errors.scenarioName && (
-                    <div className="invalid-feedback text-md-left">
-                      {errors.scenarioName}
-                    </div>
-                  )}
-                  {errors.message &&
-                  errors.message.includes("Scenario name") ? (
-                    <React.Fragment>
-                      <div className="invalid-feedback text-md-left">
-                        {errors.message}
-                      </div>
-                    </React.Fragment>
-                  ) : (
-                    ""
-                  )}
-                </div>
-                {/*-------------Description --------------*/}
-
-                <div className="form-group">
-                  <textarea
-                    type="text"
-                    className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.scenarioDescription,
-                    })}
-                    placeholder="Scenario Description"
-                    name="scenarioDescription"
-                    value={this.state.scenarioDescription}
-                    onChange={this.onChange}
-                  />
-                  {errors.scenarioDescription && (
-                    <div className="invalid-feedback text-md-left">
-                      {errors.scenarioDescription}
-                    </div>
-                  )}
-                </div>
-                {/*-------------Feature Dropdown --------------*/}
-
-                <h6>Select feature:</h6>
-                <div className="form-group">
-                  <select
-                    name="featureId"
-                    className="form-control form-control-lg"
-                    onChange={this.onChange}
-                    onSelect={this.onSelect}
-                  >
-                    {features.map((feature) => (
-                      <option value={feature.featureId}>
-                        {feature.featureName}
-                      </option>
-                    ))}
-                  </select>
-                </div>
-
-                {/*-------------STEPS --------------*/}
-                <br />
-                <div className="card">
-                  <div className="card-header">
-                    <h5>Steps</h5>
-                  </div>
-
-                  <ul className="list-group list-group-flush">
-                    {steps.map((step) => (
-                      <li className="list-group-item">
-                        {step.stepName}
-                        <Button onClick={(e) => this.handleRemoveStep(e, step)}>
-                          X
-                        </Button>
-                      </li>
-                    ))}
-                  </ul>
-                </div>
-
-                <br />
-                <h6>Select step to add:</h6>
-                <Dropdown
-                  placeholder="Select step"
-                  name="addedSteps"
-                  fluid
-                  search
-                  selection
-                  options={stepsOptions}
-                  onChange={this.handleSelect}
-                />
+      <div className="container mb-5">
+        <div className="row">
+          <div className="col-md-8 m-auto">
+            <h5 className="display-4 text-center">Update scenario</h5>
+            <hr />
+            <form onSubmit={this.onSubmit}>
+              {/*-------------Scenario Name --------------*/}
+              <div className="form-group">
                 <input
-                  type="submit"
-                  className="btn btn-primary btn-block mt-4"
+                  type="text"
+                  className={classnames("form-control form-control-lg", {
+                    "is-invalid":
+                      errors.scenarioName ||
+                      (errors.message &&
+                        errors.message.includes("Scenario name")),
+                  })}
+                  placeholder="Scenario Name"
+                  name="scenarioName"
+                  value={this.state.scenarioName}
+                  onChange={this.onChange}
                 />
-              </form>
-            </div>
+                {errors.scenarioName && (
+                  <div className="invalid-feedback text-md-left">
+                    {errors.scenarioName}
+                  </div>
+                )}
+                {errors.message && errors.message.includes("Scenario name") ? (
+                  <React.Fragment>
+                    <div className="invalid-feedback text-md-left">
+                      {errors.message}
+                    </div>
+                  </React.Fragment>
+                ) : (
+                  ""
+                )}
+              </div>
+              {/*-------------Description --------------*/}
+
+              <div className="form-group">
+                <textarea
+                  type="text"
+                  className={classnames("form-control form-control-lg", {
+                    "is-invalid": errors.scenarioDescription,
+                  })}
+                  placeholder="Scenario Description"
+                  name="scenarioDescription"
+                  value={this.state.scenarioDescription}
+                  onChange={this.onChange}
+                />
+                {errors.scenarioDescription && (
+                  <div className="invalid-feedback text-md-left">
+                    {errors.scenarioDescription}
+                  </div>
+                )}
+              </div>
+              {/*-------------Feature Dropdown --------------*/}
+
+              <h6>Select feature:</h6>
+              <div className="form-group">
+                <select
+                  name="featureId"
+                  className="form-control form-control-lg"
+                  onChange={this.onChange}
+                  onSelect={this.onSelect}
+                >
+                  {features.map((feature) => (
+                    <option value={feature.featureId}>
+                      {feature.featureName}
+                    </option>
+                  ))}
+                </select>
+              </div>
+
+              {/*-------------STEPS --------------*/}
+              <br />
+              <div className="card">
+                <div className="card-header">
+                  <h5>Steps</h5>
+                </div>
+
+                <ul className="list-group list-group-flush">
+                  {steps.map((step) => (
+                    <li className="list-group-item">
+                      {step.stepName}
+                      <Button onClick={(e) => this.handleRemoveStep(e, step)}>
+                        X
+                      </Button>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              <br />
+              <h6>Select step to add:</h6>
+              <Dropdown
+                placeholder="Select step"
+                name="addedSteps"
+                fluid
+                search
+                selection
+                options={stepsOptions}
+                onChange={this.handleSelect}
+              />
+              <input type="submit" className="btn btn-primary btn-block mt-4" />
+              <br />
+            </form>
           </div>
         </div>
       </div>

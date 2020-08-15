@@ -74,7 +74,7 @@ class ScenarioForm extends Component {
 
     return (
       <div className="register">
-        <div className="container">
+        <div className="container mb-5">
           <div className="row">
             <div className="col-md-8 m-auto">
               {/*-------------ON SUBMIT FORM --------------*/}

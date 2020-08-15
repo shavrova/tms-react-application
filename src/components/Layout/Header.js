@@ -3,7 +3,7 @@ import React, { Component } from "react";
 class Header extends Component {
   render() {
     return (
-      <nav className="navbar navbar-expand-sm navbar-dark bg-primary mb-4 bg-success">
+      <nav className="navbar navbar-expand-sm navbar-dark mb-4 bg-success">
         <div className="container ml-0 mr-0">
           <div className="collapse navbar-collapse" id="mobile-nav">
             <ul className="navbar-nav float-left mr-auto">

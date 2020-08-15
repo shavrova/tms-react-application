@@ -10,6 +10,7 @@ import store from "./store";
 import ScenarioTable from "./components/Scenario/ScenarioTable";
 import EditScenarioForm from "./components/Scenario/EditScenarioForm";
 import StepsView from "./components/steps/StepsView";
+import Footer from "./components/Layout/Footer";
 function App() {
   return (
     <Provider store={store}>
