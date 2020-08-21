@@ -14,7 +14,7 @@ class DeleteScenarioButton extends Component {
       <React.Fragment>
         <Link
           id="scenario-action"
-          class="btn btn-primary"
+          class="btn btn-link text-dark"
           onClick={this.onDeleteClick.bind(this, scenarioId)}
         >
           Delete

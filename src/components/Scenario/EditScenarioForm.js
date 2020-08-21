@@ -6,7 +6,6 @@ import { getScenario, updateScenario } from "../../actions/ScenarioActions";
 import { getFeatures } from "../../actions/FeatureActions";
 import { getSteps } from "../../actions/StepActions";
 import { Dropdown, Button } from "semantic-ui-react";
-import _ from "lodash";
 
 class EditScenarioForm extends Component {
   constructor() {
@@ -37,6 +36,7 @@ class EditScenarioForm extends Component {
       featureId,
       steps,
     } = nextProps.scenario;
+
     this.setState({
       scenarioId,
       scenarioName,
@@ -49,8 +49,8 @@ class EditScenarioForm extends Component {
   componentDidMount() {
     const { id } = this.props.match.params;
     this.props.getScenario(id, this.props.history);
-    this.props.getFeatures();
     this.props.getSteps();
+    this.props.getFeatures();
   }
 
   onChange(e) {
@@ -88,14 +88,15 @@ class EditScenarioForm extends Component {
 
   render() {
     const { features } = this.props.feature;
+    const allSteps = this.props.step.steps;
     const { errors } = this.state;
 
-    const stepsOptions = this.props.step.steps.map((step) => ({
+    const stepsOptions = allSteps.map((step) => ({
       value: step,
       text: step.stepName,
     }));
 
-    const { steps } = this.state;
+    //const { steps } = this.state;
     return (
       <div className="container mb-5">
         <div className="row">
@@ -178,7 +179,8 @@ class EditScenarioForm extends Component {
                 </div>
 
                 <ul className="list-group list-group-flush">
-                  {steps.map((step) => (
+                  {/* ERROR HERE: TypeError: Cannot read property 'map' of undefined     */}
+                  {this.state.steps.map((step) => (
                     <li className="list-group-item">
                       {step.stepName}
                       <Button onClick={(e) => this.handleRemoveStep(e, step)}>

@@ -115,18 +115,14 @@ class AllFeaturesView extends Component {
               >
                 <div className="card-body">
                   <div className="row">
-                    <div className="col">
+                    <div className="col-10">
                       <span>{scenario.scenarioName}</span>
                     </div>
-                    <div className="actions-container">
-                      <div className="col">
-                        <EditScenarioButton scenarioId={scenario.scenarioId} />
-                      </div>
-                      <div className="col">
-                        <DeleteScenatioButton
-                          scenarioId={scenario.scenarioId}
-                        />
-                      </div>
+                    <div className="col-1">
+                      <EditScenarioButton scenarioId={scenario.scenarioId} />
+                    </div>
+                    <div className="col-1">
+                      <DeleteScenatioButton scenarioId={scenario.scenarioId} />
                     </div>
                   </div>
                 </div>

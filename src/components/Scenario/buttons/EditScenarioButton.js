@@ -7,7 +7,7 @@ const CreateScenarioButton = ({ scenarioId }) => {
       <Link
         id="scenario-action"
         to={`/editScenario/${scenarioId}`}
-        class="btn btn-primary"
+        class="btn btn-link text-dark"
       >
         Edit
       </Link>

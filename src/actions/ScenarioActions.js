@@ -34,7 +34,10 @@ export const getScenario = (id, history) => async (dispatch) => {
       payload: res.data,
     });
   } catch (error) {
-    history.push("/dashboard");
+    dispatch({
+      type: GET_ERRORS,
+      payload: error.response.data,
+    });
   }
 };
 export const updateScenario = (scenario, history) => async (dispatch) => {

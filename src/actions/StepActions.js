@@ -19,11 +19,11 @@ export const getStep = (id, history) => async (dispatch) => {
 
 export const createStep = (step) => async (dispatch) => {
   try {
-    const res = await axios.post("/tests-ws/steps", step);
-  } catch (err) {
+    await axios.post("/tests-ws/steps", step);
+  } catch (error) {
     dispatch({
       type: GET_ERRORS,
-      payload: err.response.data,
+      payload: error.response.data,
     });
   }
   const all = await axios.get("/tests-ws/steps");

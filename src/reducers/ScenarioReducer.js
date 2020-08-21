@@ -3,7 +3,6 @@ import { GET_SCENARIOS, GET_SCENARIO, DELETE_SCENARIO } from "../actions/types";
 const initialState = {
   scenarios: [],
   scenario: {},
-  scenarioSteps: [],
 };
 
 export default function (state = initialState, action) {
