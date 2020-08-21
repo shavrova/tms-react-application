@@ -2,9 +2,36 @@ import React, { Component } from "react";
 import PropTypes from "prop-types";
 import Modal from "react-bootstrap/Modal";
 import Button from "react-bootstrap/Button";
-import { createStep } from "../../actions/StepActions";
+import { createStep } from "../../../actions/StepActions";
 import { connect } from "react-redux";
 import classnames from "classnames";
+
+{
+  /* 
+                      <Button
+            className="btn btn-secondary btn-block"
+            onClick={this.handleAddStep}
+          >
+            Add Step
+          </Button>
+          <button
+            className="btn btn-secondary btn-block"
+            onClick={() => this.setState({ modalShow: true })}
+          >
+            +
+          </button>
+          {this.state.modalShow ? (
+            <AddStepModal
+              show={this.state.modalShow}
+              onHide={() => this.setState({ modalShow: false })}
+            ></AddStepModal>
+          ) : null}
+          {/*<AddStepModal
+            show={this.state.modalShow}
+            onHide={() => this.setState({ modalShow: false })}
+          />
+          */
+}
 
 export class AddStepModal extends Component {
   constructor() {

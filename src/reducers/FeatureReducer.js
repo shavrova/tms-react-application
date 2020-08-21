@@ -3,7 +3,6 @@ import { GET_FEATURES, GET_FEATURE, DELETE_SCENARIO } from "../actions/types";
 const initialState = {
   features: [],
   feature: {},
-  scenarios: [],
 };
 
 export default function (state = initialState, action) {

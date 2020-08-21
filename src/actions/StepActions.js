@@ -2,7 +2,15 @@ import axios from "axios";
 import { GET_STEP, GET_STEPS, GET_ERRORS, CREATE_STEP } from "./types";
 
 export const getSteps = () => async (dispatch) => {
-  const res = await axios.get("/tests-ws/steps");
+  let res = [];
+  try {
+    res = await axios.get("/tests-ws/steps");
+  } catch (error) {
+    dispatch({
+      type: GET_ERRORS,
+      payload: error.response.data,
+    });
+  }
   dispatch({
     type: GET_STEPS,
     payload: res.data.content,

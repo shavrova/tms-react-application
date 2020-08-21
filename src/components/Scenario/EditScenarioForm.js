@@ -88,7 +88,7 @@ class EditScenarioForm extends Component {
 
   render() {
     const { features } = this.props.feature;
-    const allSteps = this.props.step.steps;
+    const allSteps = this.props.step.allSteps;
     const { errors } = this.state;
 
     const stepsOptions = allSteps.map((step) => ({
@@ -96,7 +96,6 @@ class EditScenarioForm extends Component {
       text: step.stepName,
     }));
 
-    //const { steps } = this.state;
     return (
       <div className="container mb-5">
         <div className="row">

@@ -55,7 +55,7 @@ class ScenarioForm extends Component {
     if (this.state.steps.length > value.length) {
       const difference = this.state.steps.filter((x) => !value.includes(x));
 
-      console.log(difference); // this is the item
+      console.log(difference);
       return false;
     }
     return this.setState({ steps: value });
