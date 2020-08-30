@@ -11,6 +11,8 @@ import ScenarioTable from "./components/Scenario/ScenarioTable";
 import EditScenarioForm from "./components/Scenario/EditScenarioForm";
 import StepsView from "./components/steps/StepsView";
 import Footer from "./components/Layout/Footer";
+import Register from "./components/AAA/Register";
+import Login from "./components/AAA/Login";
 function App() {
   return (
     <Provider store={store}>
@@ -18,6 +20,15 @@ function App() {
         <Router>
           <div>
             <Header />
+
+            {
+              //Public Routes
+            }
+            <Route exact path="/register" component={Register} />
+            <Route exact path="/login" component={Login} />
+            {
+              //make edit/create buttons protected
+            }
             <Route exact path="/">
               <Redirect to="/dashboard" />
             </Route>

@@ -4,11 +4,15 @@ import {
   GET_SCENARIOS,
   GET_SCENARIO,
   DELETE_SCENARIO,
+  TESTS_WS_PATH,
 } from "./types";
 
 export const createScenario = (scenario, history) => async (dispatch) => {
   try {
-    const res = await axios.post("/tests-ws/features/scenarios", scenario);
+    const res = await axios.post(
+      TESTS_WS_PATH + "/tests-ws/features/scenarios",
+      scenario
+    );
     history.push("/dashboard");
   } catch (err) {
     dispatch({
@@ -19,7 +23,7 @@ export const createScenario = (scenario, history) => async (dispatch) => {
 };
 
 export const getScenarios = () => async (dispatch) => {
-  const res = await axios.get("/tests-ws/features/scenarios");
+  const res = await axios.get(TESTS_WS_PATH + "/tests-ws/features/scenarios");
   dispatch({
     type: GET_SCENARIOS,
     payload: res.data.content,
@@ -28,7 +32,9 @@ export const getScenarios = () => async (dispatch) => {
 
 export const getScenario = (id, history) => async (dispatch) => {
   try {
-    const res = await axios.get(`/tests-ws/features/scenarios/${id}`);
+    const res = await axios.get(
+      TESTS_WS_PATH + `/tests-ws/features/scenarios/${id}`
+    );
     dispatch({
       type: GET_SCENARIO,
       payload: res.data,
@@ -42,7 +48,10 @@ export const getScenario = (id, history) => async (dispatch) => {
 };
 export const updateScenario = (scenario, history) => async (dispatch) => {
   try {
-    const res = await axios.put("/tests-ws/features/scenarios", scenario);
+    const res = await axios.put(
+      TESTS_WS_PATH + "/tests-ws/features/scenarios",
+      scenario
+    );
     history.push("/dashboard");
     // dispatch({
     //   type: GET_ERRORS,
@@ -58,7 +67,7 @@ export const updateScenario = (scenario, history) => async (dispatch) => {
 
 export const deleteScenario = (id) => async (dispatch) => {
   if (window.confirm("This action will delete scenario, proceed?")) {
-    await axios.delete(`/tests-ws/features/scenarios/${id}`);
+    await axios.delete(TESTS_WS_PATH + `/tests-ws/features/scenarios/${id}`);
     dispatch({
       type: DELETE_SCENARIO,
       payload: id,
