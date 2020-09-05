@@ -7,9 +7,10 @@ import AllFeaturesView from "./Scenario/AllFeaturesView";
 
 class Dashboard extends Component {
   componentDidMount() {
-    //this.props.getScenarios();
     this.props.getFeatures();
-    //<TestsTreeView features={features} />
+    if (!this.props.security.validToken) {
+      this.props.history.push("/login");
+    }
   }
 
   render() {
@@ -30,11 +31,13 @@ Dashboard.propTypes = {
 
   feature: PropTypes.object.isRequired,
   getFeatures: PropTypes.func.isRequired,
+  security: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   scenario: state.scenario,
   feature: state.feature,
+  security: state.security,
 });
 
 export default connect(mapStateToProps, { getScenarios, getFeatures })(

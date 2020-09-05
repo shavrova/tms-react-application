@@ -21,8 +21,17 @@ class Register extends Component {
   }
 
   componentWillReceiveProps(nextProps) {
+    if (nextProps.security.validToken) {
+      this.props.history.push("/dashboard");
+    }
     if (nextProps.errors) {
       this.setState({ errors: nextProps.errors });
+    }
+  }
+
+  componentDidMount() {
+    if (this.props.security.validToken) {
+      this.props.history.push("/dashboard");
     }
   }
 
@@ -57,7 +66,7 @@ class Register extends Component {
                   <input
                     type="text"
                     className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.firstName,
+                      "is-invalid text-md-left": errors.firstName,
                     })}
                     placeholder="First name"
                     name="firstName"
@@ -75,7 +84,7 @@ class Register extends Component {
                   <input
                     type="text"
                     className={classnames("form-control form-control-lg", {
-                      "is-invalid": errors.lastName,
+                      "is-invalid text-md-left": errors.lastName,
                     })}
                     placeholder="Last Name"
                     name="lastName"
@@ -92,7 +101,7 @@ class Register extends Component {
                   <input
                     type="text"
                     className={classnames("form-control form-control-lg", {
-                      "is-invalid":
+                      "is-invalid text-md-left":
                         errors.email ||
                         (errors.message && errors.message.includes("Email")),
                     })}
@@ -121,7 +130,7 @@ class Register extends Component {
                   <input
                     type="password"
                     className={classnames("form-control form-control-lg", {
-                      "is-invalid":
+                      "is-invalid text-md-left":
                         errors.password ||
                         (errors.message && errors.message.includes("Password")),
                     })}
@@ -131,7 +140,9 @@ class Register extends Component {
                     onChange={this.onChange}
                   />
                   {errors.password && (
-                    <div className="invalid-feedback">{errors.password}</div>
+                    <div className="invalid-feedback text-md-left">
+                      {errors.password}
+                    </div>
                   )}
                   {errors.message && errors.message.includes("Password") ? (
                     <React.Fragment>
@@ -147,7 +158,7 @@ class Register extends Component {
                   <input
                     type="password"
                     className={classnames("form-control form-control-lg", {
-                      "is-invalid":
+                      "is-invalid text-md-left":
                         errors.confirmPassword ||
                         (errors.message && errors.message.includes("Confirm")),
                     })}
@@ -157,7 +168,7 @@ class Register extends Component {
                     onChange={this.onChange}
                   />
                   {errors.confirmPassword && (
-                    <div className="invalid-feedback">
+                    <div className="invalid-feedback text-md-left">
                       {errors.confirmPassword}
                     </div>
                   )}
@@ -184,9 +195,11 @@ class Register extends Component {
 Register.propTypes = {
   createNewUser: PropTypes.func.isRequired,
   errors: PropTypes.object.isRequired,
+  security: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   errors: state.errors,
+  security: state.security,
 });
 export default connect(mapStateToProps, { createNewUser })(Register);

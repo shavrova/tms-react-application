@@ -1,8 +1,8 @@
 import { GET_STEP, GET_STEPS, CREATE_STEP } from "../actions/types";
 
 const initialState = {
-  allSteps: [],
-  step: {},
+  all: [],
+  one: {},
 };
 
 export default function (state = initialState, action) {
@@ -10,17 +10,17 @@ export default function (state = initialState, action) {
     case GET_STEPS:
       return {
         ...state,
-        allSteps: action.payload,
+        all: action.payload,
       };
     case GET_STEP:
       return {
         ...state,
-        step: action.payload,
+        one: action.payload,
       };
     case CREATE_STEP:
       return {
         ...state,
-        allSteps: action.payload,
+        all: action.payload,
       };
     default:
       return state;

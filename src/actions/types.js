@@ -14,5 +14,3 @@ export const DELETE_STEP = "DELETE_STEP";
 export const CREATE_STEP = "CREATE_STEP";
 
 export const SET_CURRENT_USER = "SET_CURRENT_USER";
-
-export const TESTS_WS_PATH = "http://localhost:8001";

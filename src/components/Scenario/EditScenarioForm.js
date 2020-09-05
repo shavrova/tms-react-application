@@ -47,9 +47,9 @@ class EditScenarioForm extends Component {
   }
 
   componentDidMount() {
+    this.props.getSteps();
     const { id } = this.props.match.params;
     this.props.getScenario(id, this.props.history);
-    this.props.getSteps();
     this.props.getFeatures();
   }
 
@@ -88,7 +88,7 @@ class EditScenarioForm extends Component {
 
   render() {
     const { features } = this.props.feature;
-    const allSteps = this.props.step.allSteps;
+    const allSteps = this.props.allSteps.all;
     const { errors } = this.state;
 
     const stepsOptions = allSteps.map((step) => ({
@@ -179,14 +179,16 @@ class EditScenarioForm extends Component {
 
                 <ul className="list-group list-group-flush">
                   {/* ERROR HERE: TypeError: Cannot read property 'map' of undefined     */}
-                  {this.state.steps.map((step) => (
-                    <li className="list-group-item">
-                      {step.stepName}
-                      <Button onClick={(e) => this.handleRemoveStep(e, step)}>
-                        X
-                      </Button>
-                    </li>
-                  ))}
+
+                  {this.state.steps &&
+                    this.state.steps.map((step) => (
+                      <li className="list-group-item">
+                        {step.stepName}
+                        <Button onClick={(e) => this.handleRemoveStep(e, step)}>
+                          X
+                        </Button>
+                      </li>
+                    ))}
                 </ul>
               </div>
 
@@ -219,14 +221,14 @@ EditScenarioForm.propTypes = {
   feature: PropTypes.object.isRequired,
   errors: PropTypes.object.isRequired,
   getSteps: PropTypes.func.isRequired,
-  step: PropTypes.object.isRequired,
+  allSteps: PropTypes.object.isRequired,
 };
 
 const mapStateToProps = (state) => ({
   scenario: state.scenario.scenario,
   feature: state.feature,
   errors: state.errors,
-  step: state.step,
+  allSteps: state.allSteps,
 });
 
 export default connect(mapStateToProps, {

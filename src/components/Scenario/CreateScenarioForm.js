@@ -64,12 +64,12 @@ class ScenarioForm extends Component {
   render() {
     const { errors } = this.state;
     const { features } = this.props.feature;
-    const allSteps = this.props.step.steps;
 
-    const stepsOptions = _.map(allSteps, (step) => ({
-      key: step.stepId,
-      text: step.stepName,
+    const allSteps = this.props.step.allSteps;
+
+    const stepsOptions = allSteps.map((step) => ({
       value: step,
+      text: step.stepName,
     }));
 
     return (

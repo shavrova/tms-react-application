@@ -1,0 +1,19 @@
+{
+  "folders": [
+	{
+		"path": "../../../../../project-client"
+	},
+	{
+		"path": "../../../.."
+	},
+	{
+		"path": "../../../../../../../../Downloads/react-search-field-master"
+	},
+	{
+		"path": "../../../../../../../../Downloads/spring-boot-react-oauth2-social-login-demo-master/react-social"
+	}
+],
+  "settings": {
+    "liveServer.settings.multiRootWorkspaceName": "react-search-field-master"
+  }
+}
